@@ -1,0 +1,100 @@
+@import "theme.css";
+
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 13px;
+  font-weight: bold;
+  min-height: 13px;
+}
+
+tooltip {
+  background-color: @main-bg;
+  color: @main-fg;
+  border-radius: 9px;
+}
+
+window#waybar {
+  background: @bar-bg;
+}
+
+#workspaces button {
+  box-shadow: none;
+	text-shadow: none;
+  padding: 0px;
+  border-radius: 9px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 0px;
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-right: 0px;
+  color: @main-fg;
+  animation: ws_normal 20s ease-in-out 1;
+}
+
+/*
+#workspaces button.active {
+  background: @wb-act-bg;
+  color: @wb-act-fg;
+  margin-left: 3px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-right: 3px;
+  animation: ws_active 20s ease-in-out 1;
+  transition: all 0.4s cubic-bezier(.44,-0.70,.69,.92);
+}
+
+#workspaces button:hover {
+  background: @wb-hvr-bg;
+  color: @wb-hvr-fg;
+  animation: ws_hover 20s ease-in-out 1;
+  transition: all 0.3s cubic-bezier(.44,-0.70,.69,.92);
+}
+*/
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#window,
+#workspaces,
+#custom-media,
+#tray,
+#mode,
+#keyboard-state,
+#language,
+#idle_inhibitor,
+#custom-notification,
+#custom-icon,
+#custom-sep,
+#network,
+#scratchpad,
+#power-profiles-daemon,
+#mpd {
+  background-color: @main-bg;
+  color: @main-fg;
+  margin: 4px 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#workspaces {
+  padding: 0;
+}
+
+.modules-center,
+.modules-right,
+.modules-left {
+  margin: 6px;
+  margin-bottom: 0px;
+  border-radius: 9px;
+  background-color: @main-bg;
+}

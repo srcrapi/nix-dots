@@ -1,10 +1,10 @@
-{ pkgs, lib, spicetify-nix, ... }:
+{ pkgs, lib, inputs, ... }:
 let
-  spicePkgs = spicetify-nix.packages.${pkgs.system}.default;
+  spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
 in 
 {
   imports = [
-    spicetify-nix.homeManagerModule
+    inputs.spicetify-nix.homeManagerModule
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -16,10 +16,7 @@ in
     theme = spicePkgs.themes.catppuccin;
     colorScheme = "mocha";
 
-    enabledCustomApps = with spicePkgs.apps; [
-      new-releases
-      marketplace
-    ];
+    enabledCustomApps = with spicePkgs.apps; [ lyrics-plus ];
 
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplay

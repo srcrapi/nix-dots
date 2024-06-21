@@ -7,13 +7,21 @@
     kitty
     neovim
     vscode
+    notion
+		obs-studio
+		mpv
     firefox
+    openvpn
+    lutris
     vesktop
     discord
     dolphin
     curl
+    zoxide
     tree
+		nmap
     spotify
+    mpd-mpris
     spicetify-cli
     waybar
     swaynotificationcenter
@@ -22,14 +30,24 @@
     openssh
     swww
     eza
+    pamixer
+    flatpak
     fish
     starship
     git
+    electron
+    lazygit
     xsel
     libsForQt5.sddm
     unzip
     python312
+    python3Packages.tkinter
     python312Packages.pip
+    corepack
+    ninja
+    gobject-introspection.dev
+    meson
+    cmake
     pywal
     gcc
     home-manager
@@ -64,7 +82,7 @@
     cliphist
     nodejs_20
     firefox-devedition
-    spotube
+    google-chrome
     playerctl
     (tela-circle-icon-theme.override { colorVariants = [ "dracula" ]; })
     imagemagick

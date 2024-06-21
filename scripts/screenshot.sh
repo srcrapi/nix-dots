@@ -10,11 +10,13 @@ temp_screenshot="/tmp/screenshot.png"
 mkdir -p $saveDir
 mkdir -p $swpyDir
 
-case "$1" in
+echo -e "[Default]\nsave_dir=$saveDir\nsave_filename_format=$saveFile" > $swpyDir/config
+
+case $1 in
 p) # print all outputs
 	grimblast copysave screen $temp_screenshot && swappy -f $temp_screenshot ;;
-s) # drag to manually select a area / click on a window
-  grimblast copysave area $temp_screenshot && swappy -f $temp_screenshot ;;
+s) # drag to manually snip an area / click on a window to print it
+	grimblast copysave area $temp_screenshot && swappy -f $temp_screenshot ;;
 m) # print focused monitor
 	grimblast copysave output $temp_screenshot && swappy -f $temp_screenshot ;;
 *) # invalid option

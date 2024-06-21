@@ -19,5 +19,6 @@
     };
 
     openssh.enable = true;
+    flatpak.enable = true;
   };
 }

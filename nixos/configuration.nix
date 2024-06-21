@@ -1,11 +1,9 @@
-{ config, pkgs, ... }:
-
 {
   imports = [
       ./hardware-configuration.nix
       ./packages.nix
       ./modules/bundles.nix
-    ];
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -18,6 +16,7 @@
     dates = "weekly";
     options = "--delete-older-than 15d";
   };
+    
 
   networking.hostName = "ryo";
 
@@ -40,5 +39,4 @@
   time.timeZone = "Europe/Lisbon";
 
   system.stateVersion = "24.05";
-
 }

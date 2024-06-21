@@ -6,15 +6,19 @@
       mainBar = {
         layer = "top";
         position = "top";
+        mod = "dock";
         height = 31;
+        margin-top = 8;
+        margin-left= 15;
+        margin-right = 15;
         spacing = 4;
 
-        modules-left = ["custom/padd" "custom/icon" "hyprland/workspaces" "custom/padd"];
-        modules-center = ["custom/padd" "idle_inhibitor" "clock" "custom/padd"];
-        modules-right = ["custom/padd"  "backlight" "custom/sep"  "hyprland/language" "battery" "custom/sep" "network" "pulseaudio" "custom/notification" "tray" "custom/padd"];
+        modules-left = ["custom/padd" "custom/launcher" "custom/padd" "hyprland/workspaces" "custom/sep" "tray" "custom/padd"];
+        modules-center = ["custom/padd" "clock" "custom/sep" "mpris" "custom/padd"];
+        modules-right = ["custom/padd"  "backlight" "custom/sep"  "hyprland/language" "battery" "custom/sep" "network" "pulseaudio" "custom/notification" "custom/padd"];
 
         "hyprland/workspaces" = {
-          format = "{icon}";
+          #format = "{icon}";
           format-icons = {
             active = "";
             default = "";
@@ -30,9 +34,10 @@
         };
         
         "hyprland/language" = {
-          format = "  {}";
+          format = "  <span foreground='white'>{}</span>";
           format-en = "us";
           format-pt = "pt";
+          on-click = "~/nix/scripts/keyboard-switch.sh";
           min-legth = 5;
           tooltip = false;
         };
@@ -58,19 +63,19 @@
         };
 
         "clock" = {
-            format = "{:%I:%M %p}";
-            format-alt = " {:%a, %d/%m/%y}";
+            format = "  <span foreground='white'>{:%I:%M %p}</span>";
+            format-alt = "  <span foreground='white'>{:%H:%M</span> • <span foreground='white'>%A, %d/%m/%y}</span>";
 
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         };
 
         "pulseaudio" = {
             reverse-scrolling = 1;
-            format = "{icon} {volume}% {format_source}";
+            format = "{icon} <span foreground='white'>{volume}</span> {format_source}";
             format-bluetooth = "{volume}% {icon} {format_source}";
             format-bluetooth-muted = " {icon} {format_source}";
             format-muted = " {format_source}";
-            format-source = " {volume}%";
+            format-source = " <span foreground='white'>{volume}%</span>";
             format-source-muted = "";
             format-icons = {
               headphone = "";
@@ -98,11 +103,12 @@
 
         "backlight" = {
           device = "amdgpu_bl1";
-          format = "{icon} {percent}%";
+          format = "{icon} <span foreground='white'>{percent}%</span>";
           format-icons = ["" "" "" "" "" "" "" "" ""];
           on-scroll-up = "brightnessctl set 1%+";
           on-scroll-down = "brightnessctl set 1%-";
           min-length = 7;
+          tooltip = false;
         };
 
         "battery" = {
@@ -111,9 +117,9 @@
                 critical = 15;
             };
 
-            format = "{icon} {capacity}%";
-            format-charging = " {capacity}%";
-            format-plugged = " {capacity}%";
+            format = "{icon} <span foreground='white'>{capacity}%</span>";
+            format-charging = " <span foreground='white'>{capacity}%</span>";
+            format-plugged = " <span foreground='white'>{capacity}%</span>";
             format-alt = "{time} {icon}";
             format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
         };
@@ -128,8 +134,21 @@
           format-linked = "󰈀 {ifname} (No IP)";
           format-disconnected = "󰤭 ";
           tooltip-format-disconnected = "Disconnected";
-          format-alt = "<span foreground='#99ffdd'> {bandwidthDownBytes}</span> <span foreground='#ffcc66'> {bandwidthUpBytes}</span>";
+          format-alt = " <span foreground='white'>{bandwidthDownBytes}</span>  <span foreground='white'>{bandwidthUpBytes}</span>";
           interval = 2;
+        };
+
+        "mpris" = {
+          format = "{player_icon} <span foreground='white'>{title}</span>";
+          format-paused = "{status_icon} <span foreground='white'>{title}</span>";
+          player-icons = {
+            default = " ";
+          };
+          status-icons = {
+            paused = "⏸";
+          };
+
+          ignored-players = ["firefox"];
         };
 
         "tray" = {
@@ -138,16 +157,31 @@
           spacing = 5;
         };
 
-        "custom/icon" = {
+        "custom/launcher" = {
           format = " ";
           tooltip = false;
           on-click = "pkill -x rofi || rofi -show drun";
         };
 
         "custom/notification" = {
-          format = " ";
+          format = "{icon} ";
+          format-icons = {
+            notification = "<span><sup></sup></span>";
+            none = "";
+            dnd-notification = "<span><sup></sup></span>";
+            dnd-none = "";
+            inhibited-notification = "<span><sup></sup></span>";
+            inhibited-none = "";
+            dnd-inhibited-notification = "<span><sup></sup></span>";
+            dnd-inhibited-none = "";
+          };
+
           tooltip = false;
-          on-click = "swaync-client -t";
+          return-type = "json";
+          exec = "swaync-client -swb";
+          on-click = "swaync-client -t -sw";
+          on-click-right = "swaync-client -d -sw";
+          escape = true;
         };
 
         "custom/padd" = {
@@ -157,7 +191,7 @@
         };
         
         "custom/sep" = {
-          format = "";
+          format = "•";
           tooltip = false;
         };
       };

@@ -4,14 +4,9 @@ saveDir="$HOME/nix"
 confPath="$HOME/.config"
 scrDir=$(dirname "$(realpath "$0")")
 
-cp -r "${srcDir}/swaylock/" "$confPath"
-cp -r "${srcDir}/rofi/" "$confPath"
+cp -r "${srcDirs}/swaylock/" "$confPath"
+cp -r "${srcDirs}/rofi/" "$confPath"
 
-if [ ! -f "${confPath}/waybar" ]; then
-  mkdir -p "${confPath}/waybar"
-fi
-
-cp -r "${srcDir}/theme.css" "$confPath/waybar"
 
 mkdir -p "$saveDir"
 

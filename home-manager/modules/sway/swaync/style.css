@@ -1,7 +1,7 @@
 * {
   all: unset;
   font-size: 14px;
-  font-family: "JetBrainMono Nerd Font";
+  font-family: "JetBrainsMono Nerd Font";
   transition: 200ms;
 }
 
@@ -338,5 +338,6 @@ slider {
 }
 
 .image {
+  border-radius: 15px;
   padding-right: 0.5rem;
 }

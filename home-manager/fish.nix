@@ -1,4 +1,4 @@
-{ config, ... }: {
+{
 	programs.fish = {
 		enable = true;
 
@@ -11,7 +11,8 @@
 			upg = "sudo nixos-rebuild switch --upgrade --flake ${flakePath}";
 			hms = "home-manager switch --flake ${flakePath}";
       conf = "nvim ~/nix/nixos/configuration.nix";
-      hypr = "nvim ~/nix/home-manager/modules/wm/hypr/hyprland.nix";
+      pkgs = "nvim ~/nix/nixos/packages.nix";
+      hypr = "nvim ~/nix/home-manager/modules/wm/hypr/default.nix";
 
 			vim = "nvim";
       cat = "bat";
@@ -24,6 +25,7 @@
       ld = "eza -lhD --icons=auto";
 		};
 
-    shellInit = "fastfetch";
+    shellInit = "fastfetch && zoxide init --cmd cd fish | source";
+
 	};
 }
